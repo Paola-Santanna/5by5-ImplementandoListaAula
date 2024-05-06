@@ -65,5 +65,66 @@ namespace Implementando_Lista___aula_13
                 return false;
         }
 
+        public void RemoveByName(string n) //Vai remover o primeiro e o último item da lista
+        {
+            if (!isEmpty())
+            {
+                if (head.getName() == n )
+                {
+                    if (this.tail == this.head)
+                        this.tail = this.head = null;
+                    else
+                        this.head = null;
+                }
+                else
+                {
+                    if(tail.getName() == n)
+                        this.tail = null;
+                    else
+                    {
+                        if (this.head.getName() == n)
+                            this.head = null;
+                        else
+                        {
+                            Contact aux = head;
+                            Contact prev = head;
+                            bool compare;
+
+                            do
+                            {
+                                compare = n.Equals(aux.getName());
+                                if (!compare)
+                                {
+                                    prev = aux;
+                                    aux = aux.getNext();
+                                }
+                                else
+                                {
+                                    prev.setNext(aux.getNext());
+                                    if (prev.getNext() == null)
+                                        tail = prev;
+                                }
+                            } while (compare != true && aux != null);
+
+                            if (aux == null)
+                            {
+                                Console.WriteLine("Não existe o contato na lista.");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        public void ShowAll()
+        {
+            Contact aux = head;
+            do
+            {
+                Console.WriteLine(aux.ToString());
+                aux = aux.getNext();
+            }while (aux != null);
+        }
+
     }
 }

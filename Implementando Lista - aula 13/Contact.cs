@@ -33,5 +33,10 @@ namespace Implementando_Lista___aula_13
         {
             return this.next;
         }
+
+        public override string? ToString()
+        {
+            return $"{name} - {phone}";
+        }
     }
 }
